@@ -1,28 +1,20 @@
-import heroVideo from "../assets/hero-video.mp4";
-
-const NAVBAR_HEIGHT = 86;
-
 const Hero = () => {
     return (
-        <section
-            className="relative w-full overflow-hidden"
-            style={{
-                paddingTop: `${NAVBAR_HEIGHT}px`,
-                height: `100vh`,
-            }}
-        >
-            {/* VIDEO */}
+        <section className="relative w-full h-screen overflow-hidden">
             <video
-                src={heroVideo}
                 autoPlay
-                muted
                 loop
+                muted
                 playsInline
-                className="absolute top-[86px] left-0 w-full h-[calc(100%-86px)] object-cover"
-            />
+                className="absolute inset-0 w-full h-full object-cover"
+            >
+                <source src="/hero-video.mp4" type="video/mp4" />
+            </video>
 
-            {/* OVERLAY */}
-            <div className="absolute top-[86px] left-0 w-full h-[calc(100%-86px)] bg-black/20"></div>
+            {/* Overlay content */}
+            <div className="relative z-10 flex items-center justify-center h-full text-white">
+                <h1 className="text-4xl font-bold"></h1>
+            </div>
         </section>
     );
 };
