@@ -73,7 +73,7 @@ const About = () => {
   useEffect(() => {
     const i = setInterval(() => {
       setActive((p) => (p + 1) % images.length);
-    }, 4000); // smooth for 9 images
+    }, 3000); // smooth for 9 images
 
     return () => clearInterval(i);
   }, []);
