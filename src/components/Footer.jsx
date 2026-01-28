@@ -57,7 +57,7 @@ const Footer = () => {
               className="flex items-center gap-2 hover:underline"
             >
               <Phone size={18} />
-              <span>8080861276</span>
+              <span>9022721434</span>
             </a>
 
             {/* WHATSAPP ICON ONLY */}

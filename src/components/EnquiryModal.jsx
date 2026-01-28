@@ -11,11 +11,28 @@ const EnquiryModal = ({ open, onClose }) => {
 
   const [loading, setLoading] = useState(false);
 
+  /* 🔒 Disable background scroll when modal open */
   useEffect(() => {
-    const handler = () => onClose();
-    document.addEventListener("close-enquiry", handler);
-    return () => document.removeEventListener("close-enquiry", handler);
-  }, [onClose]);
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
+
+  /* ⎋ Close on ESC key */
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    if (open) window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [open, onClose]);
 
   if (!open) return null;
 
@@ -28,11 +45,14 @@ const EnquiryModal = ({ open, onClose }) => {
     try {
       setLoading(true);
 
-      const res = await fetch("https://landingbakcend.onrender.com/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        "https://landingbakcend.onrender.com/api/lead",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
 
       const data = await res.json();
 
@@ -51,8 +71,8 @@ const EnquiryModal = ({ open, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 py-6">
-      <div className="bg-white max-w-md w-full rounded-2xl shadow-xl relative overflow-hidden">
+    <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
+      <div className="bg-white max-w-md w-full rounded-2xl shadow-xl relative overflow-hidden animate-fadeIn">
 
         {/* HEADER */}
         <div className="bg-[#C9A24D] text-black px-5 sm:px-6 py-4 flex justify-between items-center">
@@ -66,7 +86,11 @@ const EnquiryModal = ({ open, onClose }) => {
 
         {/* BODY */}
         <div className="p-5 sm:p-6 space-y-4">
-          <img src={logo} alt="Project Logo" className="h-9 sm:h-10 mx-auto" />
+          <img
+            src={logo}
+            alt="Project Logo"
+            className="h-9 sm:h-10 mx-auto"
+          />
 
           <p className="text-center text-xs sm:text-sm text-gray-600">
             Secure your <strong>priority allotment</strong> in Balewadi’s
@@ -77,14 +101,18 @@ const EnquiryModal = ({ open, onClose }) => {
             className="w-full border border-gray-300 p-3 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
             placeholder="Full Name"
             value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, name: e.target.value })
+            }
           />
 
           <input
             className="w-full border border-gray-300 p-3 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
             placeholder="Email Address"
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
           />
 
           <div className="flex gap-3">
@@ -97,13 +125,15 @@ const EnquiryModal = ({ open, onClose }) => {
               className="w-2/3 border border-gray-300 p-3 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
               placeholder="Phone Number"
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, phone: e.target.value })
+              }
             />
           </div>
 
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 text-center">
             For early access & site visits:
-            <strong> Soumya – 8080861276</strong>
+            <strong> 9022721434</strong>
           </p>
 
           <button

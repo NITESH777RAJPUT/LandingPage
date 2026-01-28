@@ -1,25 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-
 const Location = () => {
-  const mapRef = useRef(null);
-  const [loadMap, setLoadMap] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setLoadMap(true);
-          observer.disconnect(); // load once only
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (mapRef.current) observer.observe(mapRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       id="location"
@@ -33,7 +12,6 @@ const Location = () => {
 
         {/* MAP CONTAINER */}
         <div
-          ref={mapRef}
           className="
             relative w-full
             h-[260px]
@@ -43,18 +21,16 @@ const Location = () => {
             overflow-hidden
             border border-gray-200
             shadow-sm
-            bg-gray-100
           "
         >
-          {loadMap && (
-            <iframe
-              title="Balewadi Location"
-              src="https://www.google.com/maps?q=Balewadi,Pune,Maharashtra&output=embed"
-              className="absolute inset-0 w-full h-full border-0"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          )}
+          <iframe
+            title="Balewadi Location"
+            src="https://www.google.com/maps?q=Balewadi,Pune,Maharashtra&output=embed"
+            className="absolute inset-0 w-full h-full border-0"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
 
       </div>
