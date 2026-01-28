@@ -40,14 +40,7 @@ const Footer = () => {
         {/* CONTACT */}
         <div className="space-y-4 text-sm sm:text-[15px] font-semibold text-black/95 text-center md:text-left">
 
-          {/* EMAIL */}
-          <p className="flex items-center justify-center md:justify-start gap-3">
-            <Mail size={18} />
-            <a href="mailto:sales@kunalgroup.com" className="hover:underline">
-              sales@kunalgroup.com
-            </a>
-          </p>
-
+          
           {/* PHONE + WHATSAPP */}
           <div className="flex items-center justify-center md:justify-start gap-4">
 
