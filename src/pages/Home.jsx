@@ -15,7 +15,7 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // Popup on page load
+    // 🔔 Popup on page load (once per session)
     const timer = setTimeout(() => {
       if (!sessionStorage.getItem("enquiryShown")) {
         setShowModal(true);
@@ -23,11 +23,11 @@ const Home = () => {
       }
     }, 3000);
 
-    // Popup on scroll end
+    // 🔔 Popup on scroll end (once per session)
     const handleScroll = () => {
       if (
         window.scrollY + window.innerHeight >=
-          document.body.scrollHeight - 200 &&
+        document.body.scrollHeight - 200 &&
         !sessionStorage.getItem("scrollEnquiryShown")
       ) {
         setShowModal(true);
@@ -44,47 +44,27 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="bg-white text-gray-900 overflow-x-hidden">
+      {/* NAVBAR */}
       <Navbar />
+
+      {/* ENQUIRY MODAL */}
       <EnquiryModal open={showModal} onClose={() => setShowModal(false)} />
 
-      {/* HOME */}
-      <section id="home">
+      {/* MAIN CONTENT */}
+      <main className="pt-[72px] sm:pt-[80px]">
         <Hero />
-      </section>
-
-      {/* ABOUT (optional, stays after home) */}
-      <section id="about">
         <About />
-      </section>
-
-      {/* AMENITIES */}
-      <section id="amenities">
         <Amenities />
-      </section>
-
-      {/* FLOOR PLANS */}
-      <section id="floorplans">
         <FloorPlans />
-      </section>
-
-      {/* AREA & PRICING */}
-      <section id="pricing">
         <Pricing />
-      </section>
-
-      {/* LOCATION */}
-      <section id="location">
         <Location />
-      </section>
-
-      {/* CONTACT / ENQUIRE */}
-      <section id="contact">
         <ContactForm />
-      </section>
+      </main>
 
+      {/* FOOTER */}
       <Footer />
-    </>
+    </div>
   );
 };
 

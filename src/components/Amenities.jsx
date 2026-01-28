@@ -37,43 +37,46 @@ const Amenities = () => {
   return (
     <section
       id="amenities"
-      className="bg-[#0B1C2D] py-24 text-white"
+      className="bg-white py-16 sm:py-20 lg:py-24"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* HEADING */}
-        <h2 className="text-center text-3xl sm:text-4xl font-bold mb-16">
+        <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold mb-12 lg:mb-16 text-gray-900">
           WORLD CLASS{" "}
           <span className="text-[#D4AF37]">AMENITIES</span>
         </h2>
 
         {/* GRID */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8">
           {amenities.map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -6 }}
               transition={{ duration: 0.3 }}
               className="
-                bg-[#0B1C2D]/80
-                border border-white/10
+                bg-white
+                border border-gray-200
                 rounded-xl
-                p-6
+                p-4 sm:p-5 lg:p-6
                 text-center
                 hover:border-[#D4AF37]
-                hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]
+                hover:shadow-[0_0_20px_rgba(212,175,55,0.25)]
                 transition
               "
             >
               <img
                 src={item.icon}
                 alt={item.label}
-                className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 object-contain"
+                className="w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 mx-auto mb-3 sm:mb-4 object-contain"
               />
-              <p className="text-sm font-medium">{item.label}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-700">
+                {item.label}
+              </p>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

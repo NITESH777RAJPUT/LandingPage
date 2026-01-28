@@ -23,16 +23,31 @@ const Counter = ({ end }) => {
           if (start >= end) {
             setCount(end);
             clearInterval(i);
-          } else setCount(Math.ceil(start));
+          } else {
+            setCount(Math.ceil(start));
+          }
         }, 30);
       }
     });
+
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [end]);
 
   return <span ref={ref}>{count}</span>;
 };
+
+// ================= STAT =================
+const Stat = ({ value, label }) => (
+  <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 text-center shadow-sm">
+    <h3 className="text-2xl sm:text-3xl font-bold text-[#D4AF37]">
+      {value}
+    </h3>
+    <p className="text-xs sm:text-sm text-gray-500 mt-1">
+      {label}
+    </p>
+  </div>
+);
 
 // ================= ABOUT =================
 const About = () => {
@@ -47,19 +62,19 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="bg-[#0B1C2D] py-24 text-white">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="bg-white py-16 sm:py-20 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
         {/* IMAGE SHOWCASE */}
-        <div className="relative h-[420px] sm:h-[520px] flex items-center justify-center">
+        <div className="relative h-[300px] sm:h-[420px] lg:h-[520px] flex items-center justify-center">
           {images.map((img, i) => {
             const position =
               i === active
                 ? "z-30 scale-100 opacity-100"
                 : i === (active + 1) % images.length
-                  ? "z-20 scale-95 opacity-70 translate-x-24"
+                  ? "z-20 scale-95 opacity-70 translate-x-20 sm:translate-x-24"
                   : i === (active + images.length - 1) % images.length
-                    ? "z-10 scale-95 opacity-70 -translate-x-24"
+                    ? "z-10 scale-95 opacity-70 -translate-x-20 sm:-translate-x-24"
                     : "opacity-0 scale-90 z-0";
 
             return (
@@ -68,7 +83,8 @@ const About = () => {
                 src={img}
                 alt="About"
                 className={`
-                  absolute w-[240px] sm:w-[300px]
+                  absolute
+                  w-[200px] sm:w-[260px] lg:w-[300px]
                   rounded-2xl shadow-2xl
                   transition-all duration-700 ease-in-out
                   ${position}
@@ -79,38 +95,32 @@ const About = () => {
         </div>
 
         {/* CONTENT */}
-        <div>
-          <span className="text-[#D4AF37] uppercase tracking-widest text-sm">
+        <div className="text-center lg:text-left">
+          <span className="text-[#D4AF37] uppercase tracking-widest text-xs sm:text-sm">
             Legacy You Can Count On
           </span>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold mt-4 mb-6">
-            Excellence That <span className="text-[#D4AF37]">Endures</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-extrabold mt-4 mb-6 text-gray-900">
+            Excellence That{" "}
+            <span className="text-[#D4AF37]">Endures</span>
           </h2>
 
-          <p className="text-gray-300 mb-10 max-w-xl">
+          <p className="text-sm sm:text-base text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
             For over three decades, <strong>Kunal Group</strong> has shaped
             Pune’s skyline with timeless luxury developments.
           </p>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
             <Stat value={<><Counter end={35} />+</>} label="Years" />
             <Stat value={<><Counter end={6} />M+</>} label="Sq. Ft." />
             <Stat value={<><Counter end={5500} />+</>} label="Homes" />
             <Stat value={<Counter end={100} />} label="Trust %" />
           </div>
         </div>
+
       </div>
     </section>
   );
 };
-
-// ================= STAT =================
-const Stat = ({ value, label }) => (
-  <div className="bg-[#0B1C2D]/80 border border-white/10 rounded-xl p-5 text-center">
-    <h3 className="text-3xl font-bold text-[#D4AF37]">{value}</h3>
-    <p className="text-sm text-gray-300">{label}</p>
-  </div>
-);
 
 export default About;

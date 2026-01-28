@@ -20,7 +20,6 @@ const EnquiryModal = ({ open, onClose }) => {
   if (!open) return null;
 
   const submitHandler = async () => {
-    // ✅ basic validation
     if (!form.name || !form.email || !form.phone) {
       alert("Please fill all fields");
       return;
@@ -31,9 +30,7 @@ const EnquiryModal = ({ open, onClose }) => {
 
       const res = await fetch("https://landingbakcend.onrender.com/api/lead", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
@@ -46,7 +43,7 @@ const EnquiryModal = ({ open, onClose }) => {
       } else {
         alert(data.message || "Submission failed");
       }
-    } catch (err) {
+    } catch {
       alert("Server error. Please try again.");
     } finally {
       setLoading(false);
@@ -54,53 +51,53 @@ const EnquiryModal = ({ open, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center px-4">
-      <div className="bg-white max-w-md w-full rounded-xl shadow-xl relative">
+    <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 py-6">
+      <div className="bg-white max-w-md w-full rounded-2xl shadow-xl relative overflow-hidden">
 
         {/* HEADER */}
-        <div className="bg-[#C9A24D] text-black px-6 py-4 flex justify-between items-center rounded-t-xl">
-          <h3 className="font-semibold">EOI Registration</h3>
-          <button onClick={onClose}>
+        <div className="bg-[#C9A24D] text-black px-5 sm:px-6 py-4 flex justify-between items-center">
+          <h3 className="font-semibold text-base sm:text-lg">
+            EOI Registration
+          </h3>
+          <button onClick={onClose} aria-label="Close">
             <X />
           </button>
         </div>
 
         {/* BODY */}
-        <div className="p-6 space-y-4">
-          <img src={logo} alt="Project Logo" className="h-10 mx-auto" />
+        <div className="p-5 sm:p-6 space-y-4">
+          <img src={logo} alt="Project Logo" className="h-9 sm:h-10 mx-auto" />
 
-          <p className="text-center text-sm text-gray-600">
+          <p className="text-center text-xs sm:text-sm text-gray-600">
             Secure your <strong>priority allotment</strong> in Balewadi’s
             next iconic address.
           </p>
 
           <input
-            className="w-full border p-3 rounded"
+            className="w-full border border-gray-300 p-3 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
             placeholder="Full Name"
             value={form.name}
-            onChange={(e) =>
-              setForm({ ...form, name: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
           />
 
           <input
-            className="w-full border p-3 rounded"
+            className="w-full border border-gray-300 p-3 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
             placeholder="Email Address"
             value={form.email}
-            onChange={(e) =>
-              setForm({ ...form, email: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
 
           <div className="flex gap-3">
-            <input className="w-1/3 border p-3 rounded" value="+91" disabled />
             <input
-              className="w-2/3 border p-3 rounded"
+              className="w-1/3 border border-gray-300 p-3 rounded-md text-sm bg-gray-100"
+              value="+91"
+              disabled
+            />
+            <input
+              className="w-2/3 border border-gray-300 p-3 rounded-md text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
               placeholder="Phone Number"
               value={form.phone}
-              onChange={(e) =>
-                setForm({ ...form, phone: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
           </div>
 
@@ -112,7 +109,7 @@ const EnquiryModal = ({ open, onClose }) => {
           <button
             onClick={submitHandler}
             disabled={loading}
-            className="w-full bg-[#C9A24D] text-black py-3 rounded font-semibold"
+            className="w-full bg-[#C9A24D] text-black py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-[#D4AF37] transition disabled:opacity-70"
           >
             {loading ? "Submitting..." : "Submit EOI"}
           </button>

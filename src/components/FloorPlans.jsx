@@ -7,20 +7,28 @@ const FloorPlans = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="bg-[#0B1C2D] py-24">
+    <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-center text-4xl font-bold mb-14">
+        <h2 className="text-center text-4xl font-bold mb-14 text-gray-900">
           Floor <span className="text-[#D4AF37]">Plans</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 gap-10">
           {[plan1, plan2].map((img, i) => (
-            <div key={i} className="bg-[#0B1C2D]/80 rounded-xl overflow-hidden">
-              <img src={img} className="h-60 w-full object-cover" />
+            <div
+              key={i}
+              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition"
+            >
+              <img
+                src={img}
+                alt={`Floor Plan ${i + 1}`}
+                className="h-60 w-full object-cover"
+              />
+
               <div className="p-6 text-center">
                 <button
                   onClick={() => setOpen(true)}
-                  className="bg-[#D4AF37] text-[#0B1C2D] px-6 py-2 rounded-full font-semibold"
+                  className="bg-[#D4AF37] text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-[#c9a634] transition"
                 >
                   View Plan
                 </button>
