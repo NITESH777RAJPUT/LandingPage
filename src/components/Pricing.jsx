@@ -6,7 +6,7 @@ const Pricing = () => {
         {/* SECTION TITLE */}
         <div className="text-center mb-16">
           <p className="text-[#D4AF37] tracking-widest uppercase text-sm">
-            Area & Pricing
+            3 Ways to Own Your Serenity
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
             Choose Your <span className="text-[#D4AF37]">Perfect Home</span>
@@ -17,24 +17,24 @@ const Pricing = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* CARD 1 */}
-          <div
-            className="bg-white border border-gray-200 rounded-2xl p-8
-                       hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]
-                       transition"
-          >
-            <h3 className="text-xl font-semibold mb-4 text-gray-900">2 BHK</h3>
-            <p className="text-gray-600 mb-6">Smartly designed homes</p>
+          <div className="bg-white border border-gray-200 rounded-2xl p-8
+                          hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]
+                          transition">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+              Heaven
+            </h3>
+            <p className="text-sm text-gray-500 mb-4">3 BHK Residences</p>
 
             <ul className="space-y-3 text-gray-600 text-sm">
-              <li>• Carpet Area: 750 – 820 sq.ft</li>
-              <li>• Spacious Living & Dining</li>
-              <li>• Modular Kitchen</li>
+              <li>• Carpet Area: 1150 – 1250 sq.ft.</li>
+              <li>• Efficient Layout</li>
+              <li>• Premium Specifications</li>
             </ul>
 
             <div className="mt-6">
-              <p className="text-xs text-gray-500">Starting Price</p>
+              <p className="text-xs text-gray-500">Price Range</p>
               <p className="text-2xl font-bold text-[#D4AF37]">
-                ₹ 95 Lakhs*
+                ₹ 1.79 – 2.11 Cr*
               </p>
             </div>
 
@@ -49,58 +49,70 @@ const Pricing = () => {
             </a>
           </div>
 
-          {/* CARD 2 (HIGHLIGHTED) */}
+          {/* CARD 2 */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-8
+                          hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]
+                          transition">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+              Tranquil
+            </h3>
+            <p className="text-sm text-gray-500 mb-4">Spacious 3 BHK</p>
+
+            <ul className="space-y-3 text-gray-600 text-sm">
+              <li>• Carpet Area: 1350 – 1450 sq.ft.</li>
+              <li>• Large Living Spaces</li>
+              <li>• Enhanced Privacy</li>
+            </ul>
+
+            <div className="mt-6">
+              <p className="text-xs text-gray-500">Price Range</p>
+              <p className="text-2xl font-bold text-[#D4AF37]">
+                ₹ 2.15 – 2.39 Cr*
+              </p>
+            </div>
+
+            <a
+              href="#contact"
+              className="inline-block mt-6 w-full text-center
+                         bg-[#D4AF37] text-gray-900
+                         py-3 rounded-full font-semibold
+                         hover:bg-[#E6C75A] transition"
+            >
+              Enquire Now
+            </a>
+          </div>
+
+          {/* 🔥 CARD 3 – MOST PREMIUM */}
           <div
-            className="bg-white border-2 border-[#D4AF37]
-                       rounded-2xl p-8 shadow-lg
+            className="relative bg-white border-2 border-[#D4AF37]
+                       rounded-2xl p-8
+                       shadow-[0_0_35px_rgba(212,175,55,0.35)]
                        md:scale-105"
           >
-            <h3 className="text-xl font-semibold mb-4 text-gray-900">3 BHK</h3>
-            <p className="text-gray-600 mb-6">Premium family residences</p>
+            {/* BADGE */}
+            <span className="absolute -top-4 left-1/2 -translate-x-1/2
+                             bg-[#D4AF37] text-gray-900
+                             text-xs font-bold px-4 py-1 rounded-full">
+              MOST PREMIUM
+            </span>
+
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+              Elysium
+            </h3>
+            <p className="text-sm text-gray-500 mb-4">
+              3 BHK Duplex
+            </p>
 
             <ul className="space-y-3 text-gray-600 text-sm">
-              <li>• Carpet Area: 1050 – 1200 sq.ft</li>
-              <li>• Large Balcony</li>
-              <li>• Premium Finishes</li>
+              <li>• Carpet Area: 1500 – 1600 sq.ft.</li>
+              <li>• Duplex Living</li>
+              <li>• Exclusive Experience</li>
             </ul>
 
             <div className="mt-6">
-              <p className="text-xs text-gray-500">Starting Price</p>
+              <p className="text-xs text-gray-500">Price Range</p>
               <p className="text-2xl font-bold text-[#D4AF37]">
-                ₹ 1.35 Cr*
-              </p>
-            </div>
-
-            <a
-              href="#contact"
-              className="inline-block mt-6 w-full text-center
-                         bg-[#D4AF37] text-gray-900
-                         py-3 rounded-full font-semibold
-                         hover:bg-[#E6C75A] transition"
-            >
-              Enquire Now
-            </a>
-          </div>
-
-          {/* CARD 3 */}
-          <div
-            className="bg-white border border-gray-200 rounded-2xl p-8
-                       hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]
-                       transition"
-          >
-            <h3 className="text-xl font-semibold mb-4 text-gray-900">4 BHK</h3>
-            <p className="text-gray-600 mb-6">Luxury living spaces</p>
-
-            <ul className="space-y-3 text-gray-600 text-sm">
-              <li>• Carpet Area: 1450+ sq.ft</li>
-              <li>• Private Deck</li>
-              <li>• Exclusive Floor</li>
-            </ul>
-
-            <div className="mt-6">
-              <p className="text-xs text-gray-500">Starting Price</p>
-              <p className="text-2xl font-bold text-[#D4AF37]">
-                ₹ 1.95 Cr*
+                ₹ 2.39 – 2.69 Cr*
               </p>
             </div>
 

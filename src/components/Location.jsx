@@ -14,7 +14,7 @@ const Location = () => {
         <div
           className="
             relative w-full
-            h-[260px]        /* 📱 MOBILE FIX */
+            h-[260px]
             sm:h-[360px]
             lg:h-[420px]
             rounded-xl
@@ -27,7 +27,7 @@ const Location = () => {
             title="Balewadi Location"
             src="https://www.google.com/maps?q=Balewadi,Pune,Maharashtra&output=embed"
             className="absolute inset-0 w-full h-full border-0"
-            loading="lazy"
+            /* 🚫 REMOVE loading="lazy" */
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
