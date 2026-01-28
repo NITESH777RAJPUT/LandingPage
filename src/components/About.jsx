@@ -6,6 +6,7 @@ import img4 from "../assets/images/about/img4.jpg";
 
 const images = [img1, img2, img3, img4];
 
+// ================= COUNTER =================
 const Counter = ({ end }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -33,32 +34,48 @@ const Counter = ({ end }) => {
   return <span ref={ref}>{count}</span>;
 };
 
+// ================= ABOUT =================
 const About = () => {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
     const i = setInterval(
       () => setActive((p) => (p + 1) % images.length),
-      2800
+      3000
     );
     return () => clearInterval(i);
   }, []);
 
   return (
-    <section id="about" className="bg-[#0B1C2D] py-24">
+    <section id="about" className="bg-[#0B1C2D] py-24 text-white">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
 
-        {/* IMAGES */}
-        <div className="relative h-[420px] sm:h-[520px] flex justify-center">
-          {images.map((img, i) => (
-            <img
-              key={i}
-              src={img}
-              className={`absolute w-[220px] sm:w-[280px] rounded-2xl shadow-2xl transition-all duration-700
-                ${i === active ? "opacity-100 scale-100 z-20" : "opacity-0 scale-90 z-0"}
-              `}
-            />
-          ))}
+        {/* IMAGE SHOWCASE */}
+        <div className="relative h-[420px] sm:h-[520px] flex items-center justify-center">
+          {images.map((img, i) => {
+            const position =
+              i === active
+                ? "z-30 scale-100 opacity-100"
+                : i === (active + 1) % images.length
+                  ? "z-20 scale-95 opacity-70 translate-x-24"
+                  : i === (active + images.length - 1) % images.length
+                    ? "z-10 scale-95 opacity-70 -translate-x-24"
+                    : "opacity-0 scale-90 z-0";
+
+            return (
+              <img
+                key={i}
+                src={img}
+                alt="About"
+                className={`
+                  absolute w-[240px] sm:w-[300px]
+                  rounded-2xl shadow-2xl
+                  transition-all duration-700 ease-in-out
+                  ${position}
+                `}
+              />
+            );
+          })}
         </div>
 
         {/* CONTENT */}
@@ -80,7 +97,7 @@ const About = () => {
             <Stat value={<><Counter end={35} />+</>} label="Years" />
             <Stat value={<><Counter end={6} />M+</>} label="Sq. Ft." />
             <Stat value={<><Counter end={5500} />+</>} label="Homes" />
-            <Stat value={<Counter end={100} />} label="Trust" />
+            <Stat value={<Counter end={100} />} label="Trust %" />
           </div>
         </div>
       </div>
@@ -88,6 +105,7 @@ const About = () => {
   );
 };
 
+// ================= STAT =================
 const Stat = ({ value, label }) => (
   <div className="bg-[#0B1C2D]/80 border border-white/10 rounded-xl p-5 text-center">
     <h3 className="text-3xl font-bold text-[#D4AF37]">{value}</h3>
