@@ -14,15 +14,11 @@ const Pricing = () => {
         </div>
 
         {/* PRICING CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {/* CARD 1 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-8
-                          hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]
-                          transition">
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">
-              Heaven
-            </h3>
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] transition">
+            <h3 className="text-xl font-semibold mb-2">Heaven</h3>
             <p className="text-sm text-gray-500 mb-4">3 BHK Residences</p>
 
             <ul className="space-y-3 text-gray-600 text-sm">
@@ -38,24 +34,14 @@ const Pricing = () => {
               </p>
             </div>
 
-            <a
-              href="#contact"
-              className="inline-block mt-6 w-full text-center
-                         bg-[#D4AF37] text-gray-900
-                         py-3 rounded-full font-semibold
-                         hover:bg-[#E6C75A] transition"
-            >
+            <a href="#contact" className="mt-6 block text-center bg-[#D4AF37] py-3 rounded-full font-semibold hover:bg-[#E6C75A] transition">
               Enquire Now
             </a>
           </div>
 
           {/* CARD 2 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-8
-                          hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]
-                          transition">
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">
-              Tranquil
-            </h3>
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] transition">
+            <h3 className="text-xl font-semibold mb-2">Tranquil</h3>
             <p className="text-sm text-gray-500 mb-4">Spacious 3 BHK</p>
 
             <ul className="space-y-3 text-gray-600 text-sm">
@@ -71,37 +57,19 @@ const Pricing = () => {
               </p>
             </div>
 
-            <a
-              href="#contact"
-              className="inline-block mt-6 w-full text-center
-                         bg-[#D4AF37] text-gray-900
-                         py-3 rounded-full font-semibold
-                         hover:bg-[#E6C75A] transition"
-            >
+            <a href="#contact" className="mt-6 block text-center bg-[#D4AF37] py-3 rounded-full font-semibold hover:bg-[#E6C75A] transition">
               Enquire Now
             </a>
           </div>
 
           {/* 🔥 CARD 3 – MOST PREMIUM */}
-          <div
-            className="relative bg-white border-2 border-[#D4AF37]
-                       rounded-2xl p-8
-                       shadow-[0_0_35px_rgba(212,175,55,0.35)]
-                       md:scale-105"
-          >
-            {/* BADGE */}
-            <span className="absolute -top-4 left-1/2 -translate-x-1/2
-                             bg-[#D4AF37] text-gray-900
-                             text-xs font-bold px-4 py-1 rounded-full">
+          <div className="relative bg-white border-2 border-[#D4AF37] rounded-2xl p-8 shadow-[0_0_35px_rgba(212,175,55,0.35)] md:scale-105">
+            <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#D4AF37] text-xs font-bold px-4 py-1 rounded-full">
               MOST PREMIUM
             </span>
 
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">
-              Elysium
-            </h3>
-            <p className="text-sm text-gray-500 mb-4">
-              3 BHK Duplex
-            </p>
+            <h3 className="text-xl font-semibold mb-2">Elysium</h3>
+            <p className="text-sm text-gray-500 mb-4">3 BHK Duplex</p>
 
             <ul className="space-y-3 text-gray-600 text-sm">
               <li>• Carpet Area: 1500 – 1600 sq.ft.</li>
@@ -116,13 +84,30 @@ const Pricing = () => {
               </p>
             </div>
 
-            <a
-              href="#contact"
-              className="inline-block mt-6 w-full text-center
-                         bg-[#D4AF37] text-gray-900
-                         py-3 rounded-full font-semibold
-                         hover:bg-[#E6C75A] transition"
-            >
+            <a href="#contact" className="mt-6 block text-center bg-[#D4AF37] py-3 rounded-full font-semibold hover:bg-[#E6C75A] transition">
+              Enquire Now
+            </a>
+          </div>
+
+          {/* 🏆 CARD 4 – ULTRA LUXURY */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-[0_0_30px_rgba(212,175,55,0.25)] transition">
+            <h3 className="text-xl font-semibold mb-2">Signature</h3>
+            <p className="text-sm text-gray-500 mb-4">Ultra Luxury 4 BHK</p>
+
+            <ul className="space-y-3 text-gray-600 text-sm">
+              <li>• Carpet Area: 4 BHK</li>
+              <li>• Grand Living Spaces</li>
+              <li>• Elite Privacy & Scale</li>
+            </ul>
+
+            <div className="mt-6">
+              <p className="text-xs text-gray-500">Starting Price</p>
+              <p className="text-2xl font-bold text-[#D4AF37]">
+                ₹ 2.74 Cr*
+              </p>
+            </div>
+
+            <a href="#contact" className="mt-6 block text-center bg-[#D4AF37] py-3 rounded-full font-semibold hover:bg-[#E6C75A] transition">
               Enquire Now
             </a>
           </div>

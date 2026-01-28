@@ -3,8 +3,11 @@ import img1 from "../assets/images/about/img1.jpg";
 import img2 from "../assets/images/about/img2.jpg";
 import img3 from "../assets/images/about/img3.jpg";
 import img4 from "../assets/images/about/img4.jpg";
+import img5 from "../assets/images/about/img5.jpg";
+import img6 from "../assets/images/about/img6.jpg";
 
-const images = [img1, img2, img3, img4];
+// 👉 Bas yahan add karte jao
+const images = [img1, img2, img3, img4, img5, img6];
 
 // ================= COUNTER =================
 const Counter = ({ end }) => {
@@ -68,20 +71,28 @@ const About = () => {
         {/* IMAGE SHOWCASE */}
         <div className="relative h-[300px] sm:h-[420px] lg:h-[520px] flex items-center justify-center">
           {images.map((img, i) => {
-            const position =
-              i === active
-                ? "z-30 scale-100 opacity-100"
-                : i === (active + 1) % images.length
-                  ? "z-20 scale-95 opacity-70 translate-x-20 sm:translate-x-24"
-                  : i === (active + images.length - 1) % images.length
-                    ? "z-10 scale-95 opacity-70 -translate-x-20 sm:-translate-x-24"
-                    : "opacity-0 scale-90 z-0";
+            const total = images.length;
+            const prev = (active - 1 + total) % total;
+            const next = (active + 1) % total;
+
+            let position =
+              "opacity-0 scale-90 z-0";
+
+            if (i === active) {
+              position = "z-30 scale-100 opacity-100";
+            } else if (i === next) {
+              position =
+                "z-20 scale-95 opacity-70 translate-x-20 sm:translate-x-24";
+            } else if (i === prev) {
+              position =
+                "z-10 scale-95 opacity-70 -translate-x-20 sm:-translate-x-24";
+            }
 
             return (
               <img
                 key={i}
                 src={img}
-                alt="About"
+                alt={`About ${i + 1}`}
                 className={`
                   absolute
                   w-[200px] sm:w-[260px] lg:w-[300px]
