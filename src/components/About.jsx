@@ -5,9 +5,22 @@ import img3 from "../assets/images/about/img3.jpg";
 import img4 from "../assets/images/about/img4.jpg";
 import img5 from "../assets/images/about/img5.jpg";
 import img6 from "../assets/images/about/img6.jpg";
+import img7 from "../assets/images/about/img7.jpg";
+import img8 from "../assets/images/about/img8.jpg";
+import img9 from "../assets/images/about/img9.jpg";
 
-// 👉 Bas yahan add karte jao
-const images = [img1, img2, img3, img4, img5, img6];
+// 👉 Total 9 images
+const images = [
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+];
 
 // ================= COUNTER =================
 const Counter = ({ end }) => {
@@ -21,6 +34,7 @@ const Counter = ({ end }) => {
         started.current = true;
         let start = 0;
         const inc = end / 60;
+
         const i = setInterval(() => {
           start += inc;
           if (start >= end) {
@@ -57,10 +71,10 @@ const About = () => {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const i = setInterval(
-      () => setActive((p) => (p + 1) % images.length),
-      3000
-    );
+    const i = setInterval(() => {
+      setActive((p) => (p + 1) % images.length);
+    }, 4000); // smooth for 9 images
+
     return () => clearInterval(i);
   }, []);
 
@@ -75,8 +89,7 @@ const About = () => {
             const prev = (active - 1 + total) % total;
             const next = (active + 1) % total;
 
-            let position =
-              "opacity-0 scale-90 z-0";
+            let position = "opacity-0 scale-90 z-0";
 
             if (i === active) {
               position = "z-30 scale-100 opacity-100";
@@ -94,13 +107,15 @@ const About = () => {
                 src={img}
                 alt={`About ${i + 1}`}
                 className={`
-                  absolute
-                  w-[200px] sm:w-[260px] lg:w-[300px]
-                  rounded-2xl shadow-2xl
-                  transition-all duration-700 ease-in-out
-                  ${position}
-                `}
+    absolute
+    w-[230px] sm:w-[300px] lg:w-[360px]
+    rounded-2xl
+    shadow-2xl
+    transition-all duration-700 ease-in-out
+    ${position}
+  `}
               />
+
             );
           })}
         </div>

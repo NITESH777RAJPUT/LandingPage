@@ -109,7 +109,7 @@ const EnquiryModal = ({ open, onClose }) => {
 
           <p className="text-xs text-gray-500">
             For early access & site visits:
-            <strong> Soumya – 8080861276</strong>
+            <strong> 8080861276</strong>
           </p>
 
           <button
