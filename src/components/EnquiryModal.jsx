@@ -109,7 +109,7 @@ const EnquiryModal = ({ open, onClose }) => {
 
           <p className="text-xs text-gray-500">
             For early access & site visits:
-            <strong> 8080861276</strong>
+            <strong> 9022721434</strong>
           </p>
 
           <button
