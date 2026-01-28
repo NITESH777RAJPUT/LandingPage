@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* reusable helpers */
+/* =====================
+   GLOBAL THEME
+===================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0B1C2D;
+  /* NAVY BLUE */
+  color: white;
+  overscroll-behavior: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =====================
+   REUSABLE COMPONENTS
+===================== */
 @layer components {
   .section {
-    @apply py-20;
+    @apply py-24;
   }
 
   .container {
@@ -13,36 +29,24 @@
   }
 
   .btn-primary {
-    @apply bg-yellow-400 text-black px-6 py-3 rounded font-semibold hover:bg-yellow-300 transition;
+    @apply bg-[#D4AF37] text-[#0B1C2D] px-6 py-3 rounded-full font-semibold hover:bg-[#E6C75A] transition;
   }
 
   .card {
-    @apply bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition;
+    @apply bg-[#0B1C2D]/80 text-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition;
   }
 
   .input {
-    @apply w-full p-3 border rounded mt-4 focus:outline-none focus:ring-2 focus:ring-yellow-400;
+    @apply w-full p-3 rounded mt-4 bg-[#0B1C2D]/60 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#D4AF37];
   }
 }
 
-/* sections */
-.hero-section {
-  @apply bg-gradient-to-r from-slate-950 to-slate-900 text-white;
+/* MOBILE SAFE FIXES */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.dark-section {
-  @apply bg-slate-950 text-white;
-}
-
-.light-section {
-  @apply bg-white;
-}
-
-/* ✅ GLOBAL FIX */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  overscroll-behavior: none;
+video {
+  max-width: 100%;
+  height: auto;
 }

@@ -1,33 +1,34 @@
 import { useState } from "react";
-import { API } from "../services/api";
 
 const ContactForm = () => {
-  const [form, setForm] = useState({ name:"", phone:"", email:"", message:"" });
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    await API.post("/lead", form);
-    alert("Thank you! Our team will contact you shortly.");
-  };
+  const [form, setForm] = useState({});
 
   return (
-    <section id="contact" className="py-24 bg-[#0F172A]">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+    <section id="contact" className="bg-[#0B1C2D] py-24">
+      <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
         <div>
-          <h2 className="text-4xl font-bold text-white">
-            Book a <span className="text-[#C9A24D]">Site Visit</span>
+          <h2 className="text-3xl sm:text-4xl font-bold">
+            Book a <span className="text-[#D4AF37]">Site Visit</span>
           </h2>
-          <p className="mt-6 text-gray-400">
-            Fill the form & get complete project details.
+          <p className="text-gray-400 mt-4">
+            Get complete project details instantly.
           </p>
         </div>
 
-        <form onSubmit={submitHandler} className="bg-white rounded-xl p-8 space-y-4">
-          <input className="w-full border p-3 rounded" placeholder="Full Name" onChange={e=>setForm({...form,name:e.target.value})}/>
-          <input className="w-full border p-3 rounded" placeholder="Phone Number" onChange={e=>setForm({...form,phone:e.target.value})}/>
-          <input className="w-full border p-3 rounded" placeholder="Email" onChange={e=>setForm({...form,email:e.target.value})}/>
-          <textarea className="w-full border p-3 rounded" placeholder="Message" onChange={e=>setForm({...form,message:e.target.value})}/>
-          <button className="w-full bg-[#C9A24D] text-black py-3 rounded font-semibold">
+        <form className="bg-[#0B1C2D]/80 border border-white/10 rounded-xl p-6 space-y-4">
+          {["Name", "Phone", "Email"].map((p) => (
+            <input
+              key={p}
+              placeholder={p}
+              className="w-full bg-transparent border border-white/20 p-3 rounded text-white"
+            />
+          ))}
+          <textarea
+            placeholder="Message"
+            className="w-full bg-transparent border border-white/20 p-3 rounded text-white"
+          />
+          <button className="w-full bg-[#D4AF37] text-[#0B1C2D] py-3 rounded font-semibold">
             Submit
           </button>
         </form>

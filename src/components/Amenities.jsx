@@ -1,138 +1,79 @@
 import { motion } from "framer-motion";
 
+// ===== AMENITIES ICON IMPORTS =====
 import clubhouse from "../assets/amenities/clubhouse.png";
-import jogging from "../assets/amenities/jogging.png";
 import gym from "../assets/amenities/gym.png";
-import rooftop from "../assets/amenities/rooftop.png";
 import swimming from "../assets/amenities/swimming.png";
-import hall from "../assets/amenities/hall.png";
-import indoor from "../assets/amenities/indoor.png";
+import jogging from "../assets/amenities/jogging.png";
 import yoga from "../assets/amenities/yoga.png";
-import reflexology from "../assets/amenities/reflexology.png";
-import kids from "../assets/amenities/kids.png";
-import infinity from "../assets/amenities/infinity.png";
 import parking from "../assets/amenities/parking.png";
 
+import indoor from "../assets/amenities/indoor.png";
+import kids from "../assets/amenities/kids.png";
+import hall from "../assets/amenities/hall.png";
+import rooftop from "../assets/amenities/rooftop.png";
+import reflexology from "../assets/amenities/reflexology.png";
+import infinity from "../assets/amenities/infinity.png";
+
+// ===== DATA =====
 const amenities = [
   { icon: clubhouse, label: "Club House" },
-  { icon: jogging, label: "Jogging Track" },
   { icon: gym, label: "Gymnasium" },
-  { icon: rooftop, label: "Rooftop Amenities" },
   { icon: swimming, label: "Swimming Pool" },
-  { icon: hall, label: "Multipurpose Hall" },
-  { icon: indoor, label: "Indoor Game Room" },
+  { icon: jogging, label: "Jogging Track" },
   { icon: yoga, label: "Yoga Lawn" },
-  { icon: reflexology, label: "Reflexology Pool" },
-  { icon: kids, label: "Kid's Play Area" },
-  { icon: infinity, label: "Infinity Pool" },
   { icon: parking, label: "Parking" },
+
+  { icon: indoor, label: "Indoor Games" },
+  { icon: kids, label: "Kids Play Area" },
+  { icon: hall, label: "Multipurpose Hall" },
+  { icon: rooftop, label: "Rooftop Lounge" },
+  { icon: reflexology, label: "Reflexology Path" },
+  { icon: infinity, label: "Infinity Pool" },
 ];
 
-/* 🔥 CONTAINER STAGGER */
-const containerAnim = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-/* 🔹 ITEM ENTRY */
-const itemAnim = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-    scale: 0.95,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
+// ===== COMPONENT =====
 const Amenities = () => {
   return (
-    <section className="py-24 bg-gray-50">
+    <section
+      id="amenities"
+      className="bg-[#0B1C2D] py-24 text-white"
+    >
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* TITLE */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center text-3xl md:text-4xl font-bold mb-20 tracking-wide"
-        >
+        {/* HEADING */}
+        <h2 className="text-center text-3xl sm:text-4xl font-bold mb-16">
           WORLD CLASS{" "}
-          <span className="text-[#C9A24D]">AMENITIES</span>
-        </motion.h2>
+          <span className="text-[#D4AF37]">AMENITIES</span>
+        </h2>
 
         {/* GRID */}
-        <motion.div
-          variants={containerAnim}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8"
-        >
-          {amenities.map((item, i) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+          {amenities.map((item, index) => (
             <motion.div
-              key={i}
-              variants={itemAnim}
-              whileHover={{
-                y: -10,
-                rotateX: 5,
-                rotateY: -5,
-              }}
-              transition={{ type: "spring", stiffness: 180, damping: 15 }}
+              key={index}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3 }}
               className="
-                group
-                bg-white
-                rounded-2xl
-                p-8
+                bg-[#0B1C2D]/80
+                border border-white/10
+                rounded-xl
+                p-6
                 text-center
-                shadow-md
-                hover:shadow-2xl
-                transition-all
-                duration-300
-                cursor-pointer
+                hover:border-[#D4AF37]
+                hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]
+                transition
               "
             >
-              {/* ICON */}
-              <motion.div
-                whileHover={{ scale: 1.15 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="
-                  w-20 h-20 mx-auto mb-6
-                  rounded-full
-                  border border-gray-300
-                  flex items-center justify-center
-                  relative
-                "
-              >
-                {/* GLOW */}
-                <div className="absolute inset-0 rounded-full bg-[#C9A24D]/20 blur-xl opacity-0 group-hover:opacity-100 transition" />
-
-                <img
-                  src={item.icon}
-                  alt={item.label}
-                  className="w-10 h-10 object-contain relative z-10"
-                />
-              </motion.div>
-
-              {/* LABEL */}
-              <p className="text-sm font-semibold text-gray-700 tracking-wide">
-                {item.label}
-              </p>
+              <img
+                src={item.icon}
+                alt={item.label}
+                className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 object-contain"
+              />
+              <p className="text-sm font-medium">{item.label}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
