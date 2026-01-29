@@ -10,6 +10,7 @@ import Location from "../components/Location";
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 import EnquiryModal from "../components/EnquiryModal";
+import ReraSection from "../components/ReraSection";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -53,14 +54,37 @@ const Home = () => {
 
       {/* MAIN CONTENT */}
       <main className="pt-[72px] sm:pt-[80px]">
-        <Hero />
-        <About />
-        <Amenities />
-        <FloorPlans />
-        <Pricing />
-        <Location />
-        <ContactForm />
+        <section id="home">
+          <Hero />
+        </section>
+
+        <section id="about">
+          <About />
+        </section>
+
+        <section id="amenities">
+          <Amenities />
+        </section>
+
+        <section id="floorplans">
+          <FloorPlans />
+        </section>
+
+        <section id="pricing">
+          <Pricing />
+        </section>
+
+        <section id="location">
+          <Location />
+        </section>
+
+        <section id="contact">
+          <ContactForm />
+        </section>
       </main>
+
+      {/* ✅ RERA / LEGAL SECTION */}
+      <ReraSection />
 
       {/* FOOTER */}
       <Footer />

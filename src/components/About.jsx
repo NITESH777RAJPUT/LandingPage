@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import img1 from "../assets/images/about/img1.jpg";
+// import img1 from "../assets/images/about/img1.jpg";
 import img2 from "../assets/images/about/img2.jpg";
 import img3 from "../assets/images/about/img3.jpg";
 import img4 from "../assets/images/about/img4.jpg";
@@ -11,7 +11,7 @@ import img9 from "../assets/images/about/img9.jpg";
 
 // 👉 Total 9 images
 const images = [
-  img1,
+  // img1,
   img2,
   img3,
   img4,

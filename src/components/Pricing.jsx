@@ -95,7 +95,7 @@ const Pricing = () => {
             <p className="text-sm text-gray-500 mb-4">Ultra Luxury 4 BHK</p>
 
             <ul className="space-y-3 text-gray-600 text-sm">
-              <li>• Carpet Area: 4 BHK</li>
+              <li>• Carpet Area: 1679 sq.ft.</li>
               <li>• Grand Living Spaces</li>
               <li>• Elite Privacy & Scale</li>
             </ul>
