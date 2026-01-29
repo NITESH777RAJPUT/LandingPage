@@ -30,7 +30,7 @@ const Pricing = () => {
             <div className="mt-6">
               <p className="text-xs text-gray-500">Price Range</p>
               <p className="text-2xl font-bold text-[#D4AF37]">
-                ₹ 1.79 – 2.11 Cr*
+                ₹ 1.89 – 2.21 Cr*
               </p>
             </div>
 
@@ -53,7 +53,7 @@ const Pricing = () => {
             <div className="mt-6">
               <p className="text-xs text-gray-500">Price Range</p>
               <p className="text-2xl font-bold text-[#D4AF37]">
-                ₹ 2.15 – 2.39 Cr*
+                ₹ 2.25 – 2.49 Cr*
               </p>
             </div>
 
@@ -80,7 +80,7 @@ const Pricing = () => {
             <div className="mt-6">
               <p className="text-xs text-gray-500">Price Range</p>
               <p className="text-2xl font-bold text-[#D4AF37]">
-                ₹ 2.39 – 2.69 Cr*
+                ₹ 2.49 – 2.79 Cr*
               </p>
             </div>
 
