@@ -17,11 +17,30 @@ const ReraSection = () => {
                     </p>
                 </div>
 
-                {/* QR CODES */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 justify-items-center mb-10">
-                    <img src={rera1} alt="RERA QR 1" className="w-40 sm:w-44" />
-                    <img src={rera2} alt="RERA QR 2" className="w-40 sm:w-44" />
-                    <img src={rera3} alt="RERA QR 3" className="w-40 sm:w-44" />
+                {/* ✅ QR CODES */}
+                <div
+                    className="
+            flex gap-6
+            overflow-x-auto
+            sm:grid sm:grid-cols-3
+            sm:gap-8
+            justify-start sm:justify-items-center
+            mb-10
+            px-2
+          "
+                >
+                    {[rera1, rera2, rera3].map((img, i) => (
+                        <img
+                            key={i}
+                            src={img}
+                            alt={`RERA QR ${i + 1}`}
+                            className="
+                w-36 sm:w-44
+                flex-shrink-0
+                mx-auto
+              "
+                        />
+                    ))}
                 </div>
 
                 {/* RERA NUMBERS */}

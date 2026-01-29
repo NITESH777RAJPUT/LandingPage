@@ -35,17 +35,17 @@ const ContactForm = () => {
 
             {/* ✅ SAFE CALL LINK */}
             <a
-              href="tel:+918080861276"
+              href="tel:+919022721434"
               onClick={handleCallClick}
               className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm font-semibold hover:bg-gray-100 transition"
               aria-label="Call Now"
             >
               <Phone size={16} />
-              8080861276
+              9022721434
             </a>
 
             <a
-              href="https://wa.me/918080861276"
+              href="https://wa.me/919022721434"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
