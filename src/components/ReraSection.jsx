@@ -7,7 +7,7 @@ const ReraSection = () => {
         <section className="bg-white py-16 border-t">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
 
-                {/* LOGO + TITLE */}
+                {/* TITLE */}
                 <div className="mb-10">
                     <h2 className="text-2xl sm:text-3xl font-bold tracking-wider">
                         THE <span className="text-[#D4AF37]">CANARY</span>
@@ -17,30 +17,23 @@ const ReraSection = () => {
                     </p>
                 </div>
 
-                {/* ✅ QR CODES */}
-                <div
-                    className="
-            flex gap-6
-            overflow-x-auto
-            sm:grid sm:grid-cols-3
-            sm:gap-8
-            justify-start sm:justify-items-center
-            mb-10
-            px-2
-          "
-                >
-                    {[rera1, rera2, rera3].map((img, i) => (
-                        <img
-                            key={i}
-                            src={img}
-                            alt={`RERA QR ${i + 1}`}
-                            className="
-                w-36 sm:w-44
-                flex-shrink-0
-                mx-auto
-              "
-                        />
-                    ))}
+                {/* ✅ QR CODES (3 ALWAYS VISIBLE) */}
+                <div className="grid grid-cols-3 gap-4 sm:gap-8 justify-items-center mb-10">
+                    <img
+                        src={rera1}
+                        alt="RERA QR 1"
+                        className="w-24 sm:w-44"
+                    />
+                    <img
+                        src={rera2}
+                        alt="RERA QR 2"
+                        className="w-24 sm:w-44"
+                    />
+                    <img
+                        src={rera3}
+                        alt="RERA QR 3"
+                        className="w-24 sm:w-44"
+                    />
                 </div>
 
                 {/* RERA NUMBERS */}
