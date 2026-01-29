@@ -56,17 +56,17 @@ const Footer = () => {
 
             {/* ✅ SAFE CALL LINK */}
             <a
-              href="tel:+918080861276"
+              href="tel:+919022721434"
               onClick={handleCallClick}
               className="flex items-center gap-2 hover:underline"
             >
               <Phone size={18} />
-              <span>8080861276</span>
+              <span>9022721434</span>
             </a>
 
             {/* WHATSAPP */}
             <a
-              href="https://wa.me/918080861276"
+              href="https://wa.me/919022721434"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
