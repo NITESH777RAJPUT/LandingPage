@@ -19,11 +19,18 @@ const FloorPlans = () => {
               key={i}
               className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition"
             >
-              <img
-                src={img}
-                alt={`Floor Plan ${i + 1}`}
-                className="h-60 w-full object-cover"
-              />
+              {/* ✅ IMAGE WRAPPER WITH ASPECT RATIO */}
+              <div className="w-full aspect-[4/3] bg-gray-100 flex items-center justify-center">
+                <img
+                  src={img}
+                  alt={`Floor Plan ${i + 1}`}
+                  className="
+                    max-w-full
+                    max-h-full
+                    object-contain
+                  "
+                />
+              </div>
 
               <div className="p-6 text-center">
                 <button
