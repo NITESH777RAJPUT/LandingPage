@@ -6,7 +6,7 @@ const Pricing = () => {
         {/* SECTION TITLE */}
         <div className="text-center mb-16">
           <p className="text-[#D4AF37] tracking-widest uppercase text-sm">
-            3 Ways to Own Your Serenity
+            4 Ways to Own Your Serenity
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
             Choose Your <span className="text-[#D4AF37]">Perfect Home</span>
