@@ -2,6 +2,13 @@ import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 
+// 🔥 GOOGLE SHEET WEB APP URL
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxPjiKJqPfztgto9UD2IrdoOTKu9I-WWWPw0c4SMYkWTGHPX4uFPDpJ0o-Ia5XPZ5CPDQ/exec";
+
+// 🔥 BROCHURE FILE PATH (public folder)
+const BROCHURE_URL = "/brochure.pdf";
+
 const EnquiryModal = ({ open, onClose }) => {
   const [form, setForm] = useState({
     name: "",
@@ -11,7 +18,7 @@ const EnquiryModal = ({ open, onClose }) => {
 
   const [loading, setLoading] = useState(false);
 
-  // BODY SCROLL FIX (VERY IMPORTANT)
+  // 🔒 BODY SCROLL LOCK (PEHLE JAISE)
   useEffect(() => {
     if (open) {
       document.body.classList.add("overflow-hidden");
@@ -24,35 +31,51 @@ const EnquiryModal = ({ open, onClose }) => {
 
   if (!open) return null;
 
+  // 🔽 BROCHURE DOWNLOAD
+  const downloadBrochure = () => {
+    const link = document.createElement("a");
+    link.href = BROCHURE_URL;
+    link.download = "The-Canary-Brochure.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // ✅ SUBMIT HANDLER (SAFE + FULL INFO)
   const submitHandler = async () => {
-    if (!form.name || !form.email || !form.phone) {
-      alert("Please fill all fields");
+    if (!form.name || !form.phone) {
+      alert("Please fill required fields");
       return;
     }
 
+    setLoading(true);
+
     try {
-      setLoading(true);
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          source: window.__DOWNLOAD_BROCHURE__
+            ? "Brochure Download"
+            : "EOI Popup",
+          date: new Date().toLocaleString(),
+        }),
+      });
 
-      const res = await fetch(
-        "https://landingbakcend.onrender.com/api/lead",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        }
-      );
+      alert("EOI Submitted Successfully!");
 
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("EOI Submitted Successfully!");
-        setForm({ name: "", email: "", phone: "" });
-        onClose();
-      } else {
-        alert(data.message || "Submission failed");
+      // 🔥 BROCHURE DOWNLOAD ONLY IF CTA USED
+      if (window.__DOWNLOAD_BROCHURE__) {
+        downloadBrochure();
+        window.__DOWNLOAD_BROCHURE__ = false;
       }
-    } catch {
-      alert("Server error. Please try again.");
+
+      setForm({ name: "", email: "", phone: "" });
+      onClose();
+    } catch (err) {
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -62,7 +85,7 @@ const EnquiryModal = ({ open, onClose }) => {
     <div className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
       <div className="bg-white max-w-md w-full rounded-2xl shadow-xl relative overflow-hidden">
 
-        {/* HEADER */}
+        {/* HEADER (UNCHANGED) */}
         <div className="bg-[#C9A24D] px-5 py-4 flex justify-between items-center">
           <h3 className="font-semibold text-lg">EOI Registration</h3>
           <button onClick={onClose}>
@@ -107,6 +130,7 @@ const EnquiryModal = ({ open, onClose }) => {
             />
           </div>
 
+          {/* 🔒 PEHLE JAISE CONTACT INFO */}
           <p className="text-xs text-gray-500">
             For early access & site visits:
             <strong> 9022721434</strong>
@@ -117,7 +141,7 @@ const EnquiryModal = ({ open, onClose }) => {
             disabled={loading}
             className="w-full bg-[#C9A24D] py-3 rounded-full font-semibold hover:bg-[#D4AF37] disabled:opacity-70"
           >
-            {loading ? "Submitting..." : "Submit EOI"}
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </div>
       </div>

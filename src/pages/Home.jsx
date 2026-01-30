@@ -11,23 +11,24 @@ import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 import EnquiryModal from "../components/EnquiryModal";
 import ReraSection from "../components/ReraSection";
+import BrochureCTA from "../components/BrochureCTA";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // 🔔 Popup on page load (once per session)
+    // 🔔 1️⃣ POPUP ON PAGE LOAD (ONCE)
     const timer = setTimeout(() => {
       if (!sessionStorage.getItem("enquiryShown")) {
         setShowModal(true);
         sessionStorage.setItem("enquiryShown", "true");
       }
-    }, 3000);
+    }, 1500);
 
-    // 🔔 Popup on scroll end (once per session)
+    // 🔔 2️⃣ POPUP AFTER FULL PAGE SCROLL (ONCE)
     const handleScroll = () => {
       if (
-        window.scrollY + window.innerHeight >=
+        window.innerHeight + window.scrollY >=
         document.body.scrollHeight - 200 &&
         !sessionStorage.getItem("scrollEnquiryShown")
       ) {
@@ -38,55 +39,39 @@ const Home = () => {
 
     window.addEventListener("scroll", handleScroll);
 
+    // 🔔 3️⃣ POPUP FROM BROCHURE BUTTON
+    const openEnquiry = () => setShowModal(true);
+    document.addEventListener("open-enquiry", openEnquiry);
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("open-enquiry", openEnquiry);
     };
   }, []);
 
   return (
     <div className="bg-white text-gray-900 overflow-x-hidden">
-      {/* NAVBAR */}
       <Navbar />
 
-      {/* ENQUIRY MODAL */}
+      {/* 🔥 ENQUIRY MODAL */}
       <EnquiryModal open={showModal} onClose={() => setShowModal(false)} />
 
-      {/* MAIN CONTENT */}
       <main className="pt-[72px] sm:pt-[80px]">
-        <section id="home">
-          <Hero />
-        </section>
+        <Hero />
+        <About />
+        <Amenities />
+        <FloorPlans />
+        <Pricing />
 
-        <section id="about">
-          <About />
-        </section>
+        {/* 🔥 BROCHURE CTA */}
+        <BrochureCTA />
 
-        <section id="amenities">
-          <Amenities />
-        </section>
-
-        <section id="floorplans">
-          <FloorPlans />
-        </section>
-
-        <section id="pricing">
-          <Pricing />
-        </section>
-
-        <section id="location">
-          <Location />
-        </section>
-
-        <section id="contact">
-          <ContactForm />
-        </section>
+        <Location />
+        <ContactForm />
       </main>
 
-      {/* ✅ RERA / LEGAL SECTION */}
       <ReraSection />
-
-      {/* FOOTER */}
       <Footer />
     </div>
   );
