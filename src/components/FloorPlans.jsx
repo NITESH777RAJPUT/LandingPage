@@ -10,7 +10,7 @@ const FloorPlans = () => {
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-center text-4xl font-bold mb-14 text-gray-900">
-          Floor <span className="text-[#D4AF37]">Plans</span>
+          Master <span className="text-[#D4AF37]">Plans</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 gap-10">

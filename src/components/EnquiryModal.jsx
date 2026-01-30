@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { X, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 
@@ -6,7 +6,7 @@ import logo from "../assets/logo.svg";
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxPjiKJqPfztgto9UD2IrdoOTKu9I-WWWPw0c4SMYkWTGHPX4uFPDpJ0o-Ia5XPZ5CPDQ/exec";
 
-// 🔥 BROCHURE FILE PATH (public folder)
+// 🔥 BROCHURE FILE (public folder)
 const BROCHURE_URL = "/brochure.pdf";
 
 const EnquiryModal = ({ open, onClose }) => {
@@ -18,13 +18,10 @@ const EnquiryModal = ({ open, onClose }) => {
 
   const [loading, setLoading] = useState(false);
 
-  // 🔒 BODY SCROLL LOCK (PEHLE JAISE)
+  // 🔒 BODY SCROLL LOCK
   useEffect(() => {
-    if (open) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    if (open) document.body.classList.add("overflow-hidden");
+    else document.body.classList.remove("overflow-hidden");
 
     return () => document.body.classList.remove("overflow-hidden");
   }, [open]);
@@ -41,7 +38,7 @@ const EnquiryModal = ({ open, onClose }) => {
     document.body.removeChild(link);
   };
 
-  // ✅ SUBMIT HANDLER (SAFE + FULL INFO)
+  // ✅ SUBMIT HANDLER
   const submitHandler = async () => {
     if (!form.name || !form.phone) {
       alert("Please fill required fields");
@@ -64,12 +61,18 @@ const EnquiryModal = ({ open, onClose }) => {
         }),
       });
 
-      alert("EOI Submitted Successfully!");
+      alert(
+        window.__DOWNLOAD_BROCHURE__
+          ? "Details submitted! Downloading brochure…"
+          : "EOI Submitted Successfully!"
+      );
 
-      // 🔥 BROCHURE DOWNLOAD ONLY IF CTA USED
+      // 🔥 DOWNLOAD ONLY FOR BROCHURE FLOW
       if (window.__DOWNLOAD_BROCHURE__) {
-        downloadBrochure();
-        window.__DOWNLOAD_BROCHURE__ = false;
+        setTimeout(() => {
+          downloadBrochure();
+          window.__DOWNLOAD_BROCHURE__ = false;
+        }, 300);
       }
 
       setForm({ name: "", email: "", phone: "" });
@@ -85,13 +88,25 @@ const EnquiryModal = ({ open, onClose }) => {
     <div className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
       <div className="bg-white max-w-md w-full rounded-2xl shadow-xl relative overflow-hidden">
 
-        {/* HEADER (UNCHANGED) */}
+        {/* HEADER */}
         <div className="bg-[#C9A24D] px-5 py-4 flex justify-between items-center">
-          <h3 className="font-semibold text-lg">EOI Registration</h3>
+          <h3 className="font-semibold text-lg">
+            {window.__DOWNLOAD_BROCHURE__
+              ? "Download Brochure"
+              : "EOI Registration"}
+          </h3>
           <button onClick={onClose}>
             <X />
           </button>
         </div>
+
+        {/* 🔥 BROCHURE BADGE */}
+        {window.__DOWNLOAD_BROCHURE__ && (
+          <div className="bg-[#FFF4D1] text-[#9C7A24] text-xs font-semibold px-4 py-2 flex items-center justify-center gap-2">
+            <Download size={14} />
+            You’ll receive the official project brochure after submission
+          </div>
+        )}
 
         {/* BODY */}
         <div className="p-6 space-y-4">
@@ -130,7 +145,7 @@ const EnquiryModal = ({ open, onClose }) => {
             />
           </div>
 
-          {/* 🔒 PEHLE JAISE CONTACT INFO */}
+          {/* CONTACT INFO */}
           <p className="text-xs text-gray-500">
             For early access & site visits:
             <strong> 9022721434</strong>
@@ -141,7 +156,11 @@ const EnquiryModal = ({ open, onClose }) => {
             disabled={loading}
             className="w-full bg-[#C9A24D] py-3 rounded-full font-semibold hover:bg-[#D4AF37] disabled:opacity-70"
           >
-            {loading ? "Submitting..." : "Submit"}
+            {loading
+              ? "Submitting..."
+              : window.__DOWNLOAD_BROCHURE__
+                ? "Submit & Download"
+                : "Submit"}
           </button>
         </div>
       </div>

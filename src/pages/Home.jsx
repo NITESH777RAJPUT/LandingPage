@@ -17,15 +17,19 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // 🔔 1️⃣ POPUP ON PAGE LOAD (ONCE)
+    /* 🔥 OPEN MODAL FROM ANYWHERE (BROCHURE CTA ETC.) */
+    const openHandler = () => setShowModal(true);
+    document.addEventListener("open-enquiry", openHandler);
+
+    /* 🔔 POPUP ON PAGE LOAD (ONCE) */
     const timer = setTimeout(() => {
       if (!sessionStorage.getItem("enquiryShown")) {
         setShowModal(true);
         sessionStorage.setItem("enquiryShown", "true");
       }
-    }, 1500);
+    }, 3000);
 
-    // 🔔 2️⃣ POPUP AFTER FULL PAGE SCROLL (ONCE)
+    /* 🔔 POPUP ON SCROLL END (ONCE) */
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
@@ -39,14 +43,10 @@ const Home = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // 🔔 3️⃣ POPUP FROM BROCHURE BUTTON
-    const openEnquiry = () => setShowModal(true);
-    document.addEventListener("open-enquiry", openEnquiry);
-
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("open-enquiry", openEnquiry);
+      document.removeEventListener("open-enquiry", openHandler);
     };
   }, []);
 
@@ -62,11 +62,11 @@ const Home = () => {
         <About />
         <Amenities />
         <FloorPlans />
-        <Pricing />
 
-        {/* 🔥 BROCHURE CTA */}
+        {/* 🔥 BROCHURE CTA — EXACTLY BELOW FLOOR PLANS */}
         <BrochureCTA />
 
+        <Pricing />
         <Location />
         <ContactForm />
       </main>
