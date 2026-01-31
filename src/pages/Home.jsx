@@ -1,51 +1,72 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
+import AboutKunalGroup from "../components/AboutKunalGroup";
 import Amenities from "../components/Amenities";
 import FloorPlans from "../components/FloorPlans";
+import BrochureCTA from "../components/BrochureCTA";
 import Pricing from "../components/Pricing";
 import Location from "../components/Location";
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 import EnquiryModal from "../components/EnquiryModal";
 import ReraSection from "../components/ReraSection";
-import BrochureCTA from "../components/BrochureCTA";
-import AboutKunalGroup from "../components/AboutKunalGroup";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
+  const topTriggered = useRef(false);
+  const bottomTriggered = useRef(false);
+  const loadTriggered = useRef(false);
+
   useEffect(() => {
-    /* 🔥 OPEN MODAL FROM ANYWHERE */
+    /* 🔥 OPEN MODAL FROM ANYWHERE (BROCHURE CTA) */
     const openHandler = () => setShowModal(true);
     document.addEventListener("open-enquiry", openHandler);
 
-    /* 🔔 POPUP ON PAGE LOAD */
-    const timer = setTimeout(() => {
-      if (!sessionStorage.getItem("enquiryShown")) {
+    /* 🔔 FIRST PAGE LOAD POPUP */
+    if (!loadTriggered.current) {
+      setTimeout(() => {
         setShowModal(true);
-        sessionStorage.setItem("enquiryShown", "true");
-      }
-    }, 3000);
+        loadTriggered.current = true;
+      }, 2000); // 2 sec delay (premium feel)
+    }
 
-    /* 🔔 POPUP AFTER FULL SCROLL */
+    /* 🔔 SCROLL LOGIC */
     const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.body.scrollHeight;
+
+      // 🔝 TOP REACHED
+      if (scrollTop === 0 && !topTriggered.current) {
+        setShowModal(true);
+        topTriggered.current = true;
+
+        setTimeout(() => {
+          topTriggered.current = false;
+        }, 8000);
+      }
+
+      // 🔻 BOTTOM REACHED
       if (
-        window.innerHeight + window.scrollY >=
-        document.body.scrollHeight - 200 &&
-        !sessionStorage.getItem("scrollEnquiryShown")
+        scrollTop + windowHeight >= documentHeight - 50 &&
+        !bottomTriggered.current
       ) {
         setShowModal(true);
-        sessionStorage.setItem("scrollEnquiryShown", "true");
+        bottomTriggered.current = true;
+
+        setTimeout(() => {
+          bottomTriggered.current = false;
+        }, 8000);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("open-enquiry", openHandler);
     };
@@ -61,20 +82,12 @@ const Home = () => {
       <main className="pt-[72px] sm:pt-[80px]">
         <Hero />
         <About />
+        <AboutKunalGroup />
         <Amenities />
         <FloorPlans />
-
-        {/* ✅ ABOUT KUNAL GROUP — ABOVE BROCHURE */}
-        <AboutKunalGroup />
-
-        {/* ✅ BROCHURE CTA */}
         <BrochureCTA />
-
         <Pricing />
-
-        {/* ✅ LOCATION ONLY (NO CONNECTIVITY) */}
         <Location />
-
         <ContactForm />
       </main>
 
