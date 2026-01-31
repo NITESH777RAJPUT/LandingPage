@@ -12,16 +12,17 @@ import Footer from "../components/Footer";
 import EnquiryModal from "../components/EnquiryModal";
 import ReraSection from "../components/ReraSection";
 import BrochureCTA from "../components/BrochureCTA";
+import AboutKunalGroup from "../components/AboutKunalGroup";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    /* 🔥 OPEN MODAL FROM ANYWHERE (BROCHURE CTA ETC.) */
+    /* 🔥 OPEN MODAL FROM ANYWHERE */
     const openHandler = () => setShowModal(true);
     document.addEventListener("open-enquiry", openHandler);
 
-    /* 🔔 POPUP ON PAGE LOAD (ONCE) */
+    /* 🔔 POPUP ON PAGE LOAD */
     const timer = setTimeout(() => {
       if (!sessionStorage.getItem("enquiryShown")) {
         setShowModal(true);
@@ -29,7 +30,7 @@ const Home = () => {
       }
     }, 3000);
 
-    /* 🔔 POPUP ON SCROLL END (ONCE) */
+    /* 🔔 POPUP AFTER FULL SCROLL */
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
@@ -63,11 +64,17 @@ const Home = () => {
         <Amenities />
         <FloorPlans />
 
-        {/* 🔥 BROCHURE CTA — EXACTLY BELOW FLOOR PLANS */}
+        {/* ✅ ABOUT KUNAL GROUP — ABOVE BROCHURE */}
+        <AboutKunalGroup />
+
+        {/* ✅ BROCHURE CTA */}
         <BrochureCTA />
 
         <Pricing />
+
+        {/* ✅ LOCATION ONLY (NO CONNECTIVITY) */}
         <Location />
+
         <ContactForm />
       </main>
 
