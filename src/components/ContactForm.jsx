@@ -17,10 +17,9 @@ const ContactForm = () => {
 
   // 🔥 SAFE CALL HANDLER + GOOGLE ADS CALL CONVERSION
   const handleCallClick = () => {
-    // ✅ GOOGLE ADS – CALL CONVERSION
     if (window.gtag) {
       window.gtag("event", "conversion", {
-        send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // 🔴 REPLACE THIS
+        send_to: "AW-17922164514/CALL_LABEL_HERE", // 🔴 REPLACE with Call conversion label
       });
     }
 
@@ -28,6 +27,15 @@ const ContactForm = () => {
     setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
     }, 300);
+  };
+
+  // 🔥 WHATSAPP CLICK CONVERSION
+  const handleWhatsAppClick = () => {
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17922164514/yAmeCImG4PAbEKKO-uFC", // 🔴 REPLACE with WhatsApp label
+      });
+    }
   };
 
   // ✅ SUBMIT TO GOOGLE SHEET + GOOGLE ADS FORM CONVERSION
@@ -61,7 +69,7 @@ const ContactForm = () => {
       // ✅ GOOGLE ADS – FORM SUBMIT CONVERSION
       if (window.gtag) {
         window.gtag("event", "conversion", {
-          send_to: "AW-17922164514/BQqBCOH-2_AbEKKO-uFC", // 🔴 REPLACE THIS
+          send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // ✅ YOUR FORM LABEL (already correct)
         });
       }
 
@@ -91,6 +99,8 @@ const ContactForm = () => {
 
           {/* CALL + WHATSAPP */}
           <div className="mt-6 flex items-center justify-center md:justify-start gap-4">
+
+            {/* CALL */}
             <a
               href="tel:+919022721434"
               onClick={handleCallClick}
@@ -100,10 +110,12 @@ const ContactForm = () => {
               9022721434
             </a>
 
+            {/* WHATSAPP */}
             <a
               href="https://wa.me/919022721434"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleWhatsAppClick}
               className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm font-semibold hover:bg-gray-100 transition"
             >
               <svg
@@ -117,6 +129,7 @@ const ContactForm = () => {
               </svg>
               WhatsApp
             </a>
+
           </div>
         </div>
 
