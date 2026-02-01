@@ -61,6 +61,13 @@ const EnquiryModal = ({ open, onClose }) => {
         }),
       });
 
+      // 🔥 GOOGLE ADS – FORM CONVERSION (IMPORTANT)
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17922164514/BQqBCOH-2_AbEKKO-uFC", // 🔴 REPLACE THIS
+        });
+      }
+
       alert(
         window.__DOWNLOAD_BROCHURE__
           ? "Details submitted! Downloading brochure…"
@@ -145,7 +152,6 @@ const EnquiryModal = ({ open, onClose }) => {
             />
           </div>
 
-          {/* CONTACT INFO */}
           <p className="text-xs text-gray-500">
             For early access & site visits:
             <strong> 9022721434</strong>

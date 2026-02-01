@@ -8,8 +8,16 @@ import {
 
 const Footer = () => {
 
-  // 🔥 SAFE CALL HANDLER
+  // 🔥 SAFE CALL HANDLER + GOOGLE ADS CALL CONVERSION
   const handleCallClick = () => {
+
+    // ✅ GOOGLE ADS – CLICK TO CALL CONVERSION
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // 🔴 REPLACE WITH REAL CALL LABEL
+      });
+    }
+
     // modal / overlays close (global safe)
     document.dispatchEvent(new Event("close-enquiry"));
 
@@ -70,15 +78,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className="
-    flex items-center gap-2
-    px-4 py-2
-    border border-black/40
-    rounded-full
-    text-sm font-semibold
-    hover:bg-black/10
-    transition
-  "
+              className="flex items-center gap-2 px-4 py-2 border border-black/40 rounded-full text-sm font-semibold hover:bg-black/10 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,6 @@ const Footer = () => {
               >
                 <path d="M12.04 2C6.55 2 2.08 6.47 2.08 11.96c0 1.9.5 3.76 1.45 5.39L2 22l4.82-1.26c1.57.86 3.35 1.32 5.22 1.32h.01c5.49 0 9.96-4.47 9.96-9.96 0-2.66-1.03-5.16-2.91-7.04A9.9 9.9 0 0 0 12.04 2z" />
               </svg>
-
               <span>WhatsApp</span>
             </a>
 
@@ -117,7 +116,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* BOTTOM */}
       <div className="border-t border-black/30" />
       <div className="text-center py-6 text-xs sm:text-[15px] font-semibold">
         © 2026 Kunal Group. All Rights Reserved | T&amp;C Apply

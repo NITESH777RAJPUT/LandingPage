@@ -15,15 +15,22 @@ const ContactForm = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // 🔥 SAFE CALL HANDLER
+  // 🔥 SAFE CALL HANDLER + GOOGLE ADS CALL CONVERSION
   const handleCallClick = () => {
+    // ✅ GOOGLE ADS – CALL CONVERSION
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // 🔴 REPLACE THIS
+      });
+    }
+
     document.dispatchEvent(new Event("close-enquiry"));
     setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
     }, 300);
   };
 
-  // ✅ SUBMIT TO GOOGLE SHEET
+  // ✅ SUBMIT TO GOOGLE SHEET + GOOGLE ADS FORM CONVERSION
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -51,6 +58,13 @@ const ContactForm = () => {
         }),
       });
 
+      // ✅ GOOGLE ADS – FORM SUBMIT CONVERSION
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17922164514/BQqBCOH-2_AbEKKO-uFC", // 🔴 REPLACE THIS
+        });
+      }
+
       alert("Thank you! We will contact you shortly.");
       setForm({ name: "", phone: "", email: "", message: "" });
     } catch {
@@ -77,7 +91,6 @@ const ContactForm = () => {
 
           {/* CALL + WHATSAPP */}
           <div className="mt-6 flex items-center justify-center md:justify-start gap-4">
-
             <a
               href="tel:+919022721434"
               onClick={handleCallClick}
