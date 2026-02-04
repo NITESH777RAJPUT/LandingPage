@@ -8,13 +8,13 @@ import {
 
 const Footer = () => {
 
-  // 🔥 SAFE CALL HANDLER + GOOGLE ADS CALL CONVERSION
+  /* 🔥 CALL CLICK – GTM EVENT */
   const handleCallClick = () => {
-    if (window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // ✅ CALL conversion label
-      });
-    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "call_click",
+      source: "footer",
+    });
 
     document.dispatchEvent(new Event("close-enquiry"));
     setTimeout(() => {
@@ -22,13 +22,13 @@ const Footer = () => {
     }, 300);
   };
 
-  // 🔥 WHATSAPP CLICK CONVERSION
+  /* 🔥 WHATSAPP CLICK – GTM EVENT */
   const handleWhatsAppClick = () => {
-    if (window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-17922164514/yAmeCImG4PAbEKKO-uFC", // 🔴 WHATSAPP conversion label
-      });
-    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "whatsapp_click",
+      source: "footer",
+    });
   };
 
   return (
@@ -63,7 +63,7 @@ const Footer = () => {
         <div className="space-y-4 text-sm sm:text-[15px] font-semibold text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-4">
 
-            {/* CALL */}
+            {/* 📞 CALL */}
             <a
               href="tel:+919022721434"
               onClick={handleCallClick}
@@ -73,7 +73,7 @@ const Footer = () => {
               <span>9022721434</span>
             </a>
 
-            {/* WHATSAPP */}
+            {/* 💬 WHATSAPP */}
             <a
               href="https://wa.me/919022721434"
               target="_blank"
@@ -81,7 +81,13 @@ const Footer = () => {
               onClick={handleWhatsAppClick}
               className="flex items-center gap-2 px-4 py-2 border border-black/40 rounded-full text-sm font-semibold hover:bg-black/10 transition"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#25D366">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="#25D366"
+              >
                 <path d="M12.04 2C6.55 2 2.08 6.47 2.08 11.96c0 1.9.5 3.76 1.45 5.39L2 22l4.82-1.26c1.57.86 3.35 1.32 5.22 1.32h.01c5.49 0 9.96-4.47 9.96-9.96 0-2.66-1.03-5.16-2.91-7.04A9.9 9.9 0 0 0 12.04 2z" />
               </svg>
               <span>WhatsApp</span>

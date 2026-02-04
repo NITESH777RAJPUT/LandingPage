@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Phone } from "lucide-react";
 
-// 🔥 SAME GOOGLE SHEET WEB APP URL
+// 🔥 GOOGLE SHEET WEB APP URL
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxPjiKJqPfztgto9UD2IrdoOTKu9I-WWWPw0c4SMYkWTGHPX4uFPDpJ0o-Ia5XPZ5CPDQ/exec";
 
@@ -15,30 +15,28 @@ const ContactForm = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // 🔥 SAFE CALL HANDLER + GOOGLE ADS CALL CONVERSION
+  /* 🔥 CALL CLICK (GTM EVENT) */
   const handleCallClick = () => {
-    if (window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // 🔴 REPLACE with Call conversion label
-      });
-    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "call_click",
+      source: "contact_section",
+    });
 
     document.dispatchEvent(new Event("close-enquiry"));
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 300);
+    setTimeout(() => window.dispatchEvent(new Event("resize")), 300);
   };
 
-  // 🔥 WHATSAPP CLICK CONVERSION
+  /* 🔥 WHATSAPP CLICK (GTM EVENT) */
   const handleWhatsAppClick = () => {
-    if (window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-17922164514/yAmeCImG4PAbEKKO-uFC", // 🔴 REPLACE with WhatsApp label
-      });
-    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "whatsapp_click",
+      source: "contact_section",
+    });
   };
 
-  // ✅ SUBMIT TO GOOGLE SHEET + GOOGLE ADS FORM CONVERSION
+  /* ✅ FORM SUBMIT */
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -53,25 +51,23 @@ const ContactForm = () => {
       await fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
           email: form.email,
           message: form.message,
           source: "Contact Form",
-          timestamp: new Date().toLocaleString(),
+          date: new Date().toLocaleString(),
         }),
       });
 
-      // ✅ GOOGLE ADS – FORM SUBMIT CONVERSION
-      if (window.gtag) {
-        window.gtag("event", "conversion", {
-          send_to: "AW-17922164514/VZp_COT-2_AbEKKO-uFC", // ✅ YOUR FORM LABEL (already correct)
-        });
-      }
+      /* 🔥 GTM LEAD EVENT */
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "lead_submit",
+        lead_type: "contact_form",
+      });
 
       alert("Thank you! We will contact you shortly.");
       setForm({ name: "", phone: "", email: "", message: "" });

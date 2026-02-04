@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 
 // 🔥 GOOGLE SHEET WEB APP URL
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxPjiKJqPfztgto9UD2IrdoOTKu9I-WWWPw0c4SMYkWTGHPX4uFPDpJ0o-Ia5XPZ5CPDQ/exec";
+  "https://script.google.com/macros/s/AKfycbyt8jVdkgqikZdLPrEAZ6hXLvP4ljmy0m8EUJA2VFtBTv34d3_NiTx3Pf5zwRFaNEOp/exec";
 
 // 🔥 BROCHURE FILE (public folder)
 const BROCHURE_URL = "/brochure.pdf";
@@ -61,12 +61,14 @@ const EnquiryModal = ({ open, onClose }) => {
         }),
       });
 
-      // 🔥 GOOGLE ADS – FORM CONVERSION (IMPORTANT)
-      if (window.gtag) {
-        window.gtag("event", "conversion", {
-          send_to: "AW-17922164514/BQqBCOH-2_AbEKKO-uFC", // 🔴 REPLACE THIS
-        });
-      }
+      /* 🔥 GTM EVENT PUSH (IMPORTANT) */
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "lead_submit",
+        lead_type: window.__DOWNLOAD_BROCHURE__
+          ? "brochure_download"
+          : "enquiry",
+      });
 
       alert(
         window.__DOWNLOAD_BROCHURE__
